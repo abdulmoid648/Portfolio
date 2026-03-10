@@ -20,8 +20,8 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Crafting Digital <br/> 
-          <span className="gradient-text glow">Experiences</span>
+          Hi, I'm Abdul Moied Farooq <br/> 
+          <span className="gradient-text glow">Software Engineer</span>
         </motion.h1>
         
         <motion.p 

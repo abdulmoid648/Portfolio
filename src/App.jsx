@@ -19,7 +19,7 @@ function App() {
       </main>
 
       <footer className="footer container" style={{ padding: '4rem 0', display: 'flex', justifyContent: 'space-between', borderTop: '1px solid var(--glass-border)', marginTop: '4rem' }}>
-        <p style={{ color: 'var(--text-secondary)' }}>&copy; {new Date().getFullYear()} My Portfolio. All rights reserved.</p>
+        <p style={{ color: 'var(--text-secondary)' }}>&copy; {new Date().getFullYear()} Abdul Moied Farooq. All rights reserved.</p>
         <div className="social-links" style={{ display: 'flex', gap: '1.5rem' }}>
           <Github className="icon" style={{ cursor: 'pointer', color: 'var(--text-secondary)', transition: 'color 0.2s' }} />
           <Linkedin className="icon" style={{ cursor: 'pointer', color: 'var(--text-secondary)', transition: 'color 0.2s' }} />
