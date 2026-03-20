@@ -1,62 +1,39 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Scene3D from './Scene3D';
 
 const Hero = () => {
   return (
-    <section id="hero" className="hero-section container">
-      <div className="hero-content">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="hero-badge"
-        >
-          <span className="badge-text">Available for new opportunities</span>
-        </motion.div>
-        
-        <motion.h1 
-          className="hero-title"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+    <section id="hero" className="hero-section" style={{ minHeight: '60vh', paddingTop: 0 }}>
+      <div className="hero-container" style={{ alignItems: 'flex-start' }}>
+        {/* Left Side */}
+        <motion.div
+          className="hero-left term-panel"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
+          style={{ flex: 1, marginTop: '2rem' }}
         >
-          Hi, I'm Abdul Moied Farooq <br/> 
-          <span className="gradient-text glow">Software Engineer</span>
-        </motion.h1>
-        
-        <motion.p 
-          className="hero-subtitle"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          I am a passionate software engineer specializing in building modern, responsive, and visually stunning web applications with highly interactive user interfaces.
-        </motion.p>
-        
-        <motion.div 
-          className="hero-actions"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <a href="#projects" className="btn btn-primary">
-            View My Work
-            <span className="btn-glow"></span>
-          </a>
-          <a href="#contact" className="btn btn-secondary">Contact Me</a>
+          <div className="term-header">SYS_INFO</div>
+          <div className="term-text" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <span style={{ color: 'var(--term-blue)' }}>{'>'} INITIALIZING ROOT... OK</span>
+            <span style={{ color: 'var(--term-blue)' }}>{'>'} AUTHENTICATING USER...</span>
+            <span style={{ color: 'var(--term-green)', fontWeight: 'bold' }}>[ AUTH: SUCCESS ]</span>
+            <br/>
+            <span>PROFILE_NAME: <span style={{ color: 'white' }}>ABDUL MOIED FAROOQ</span></span>
+            <span>ACTIVE_ROLE: <span style={{ color: 'white' }}>FULL STACK ARCHITECT</span></span>
+            <span>STATUS: <span style={{ color: 'var(--term-green)' }}>ONLINE</span></span>
+          </div>
+          <div style={{ marginTop: '2rem' }}>
+            <button className="term-btn">{'> EXECUTE_STARTUP'}</button>
+          </div>
         </motion.div>
-      </div>
 
-      <motion.div 
-        className="hero-image-wrapper"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, delay: 0.8 }}
-      >
-        {/* Placeholder for dynamic 3D graphic or beautiful image */}
-        <div className="abstract-shape shape-1"></div>
-        <div className="abstract-shape shape-2"></div>
-      </motion.div>
+        {/* Center - 3D Scene */}
+        <div className="hero-center" style={{ flex: 1.5 }}>
+          <Scene3D />
+        </div>
+      </div>
     </section>
   );
 };

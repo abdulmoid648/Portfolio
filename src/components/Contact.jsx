@@ -1,67 +1,42 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, MapPin, Send } from 'lucide-react';
+import { Mail, MapPin, Github, Linkedin } from 'lucide-react';
 
 const Contact = () => {
   return (
-    <section id="contact" className="section container">
-      <div className="section-header align-center">
-        <h2 className="section-title">Get In <span className="gradient-text">Touch</span></h2>
-        <p className="section-subtitle align-center">Have a project in mind? Let's talk about it.</p>
+    <div id="contact" className="term-panel" style={{ marginTop: '0' }}>
+      <h2 className="term-header">CONNECTION_PROTOCOL</h2>
+      
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+        <div>
+          <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
+            <a href="#" style={{ padding: '1rem', border: '1px solid var(--term-green)', color: 'var(--term-green)', textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '100px', transition: 'all 0.2s' }} className="term-btn">
+              <Github size={32} />
+              <div style={{ fontSize: '0.7rem', marginTop: '0.5rem', textAlign: 'center' }}>GITHUB</div>
+            </a>
+            <a href="#" style={{ padding: '1rem', border: '1px solid var(--term-green)', color: 'var(--term-green)', textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '100px', transition: 'all 0.2s' }} className="term-btn">
+              <Linkedin size={32} />
+              <div style={{ fontSize: '0.7rem', marginTop: '0.5rem', textAlign: 'center' }}>LINKEDIN</div>
+            </a>
+          </div>
+          
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+             <span className="term-text">{'> TARGET: abdulmoid648@gmail.com'}</span>
+             <span className="term-text">{'> LOCATION: Lahore, Pak'}</span>
+          </div>
+        </div>
+
+        <div>
+          <div style={{ border: '1px solid var(--term-dim)', padding: '1rem', height: '100%', display: 'flex', flexDirection: 'column', minHeight: '150px' }}>
+            <span className="term-text" style={{ marginBottom: '0.5rem' }}>{'> ENTER_MESSAGE_CMD'}</span>
+            <textarea 
+              style={{ flex: 1, background: 'transparent', border: 'none', color: 'var(--term-green)', fontFamily: 'var(--term-font)', outline: 'none', resize: 'none' }}
+              placeholder="_"
+            ></textarea>
+            <button className="term-btn" style={{ alignSelf: 'flex-start', border: 'none', padding: 0, marginTop: '1rem', color: 'var(--term-blue)' }}>{'> TX_PACKET'}</button>
+          </div>
+        </div>
       </div>
-
-      <div className="contact-wrapper">
-        <motion.div
-          className="contact-info glass-panel"
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h3>Contact Information</h3>
-          <p>Fill out the form and I will get back to you within 24 hours.</p>
-
-          <div className="info-items">
-            <div className="info-item">
-              <Mail className="icon" />
-              <span>abdulmoid648@gmail.com</span>
-            </div>
-            <div className="info-item">
-              <MapPin className="icon" />
-              <span>Lahore, Pak</span>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.form
-          className="contact-form glass-panel"
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          onSubmit={(e) => e.preventDefault()}
-        >
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input type="text" id="name" placeholder="Abdul Moied" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" placeholder="abdulmoid648@gmail.com" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="message">Message</label>
-            <textarea id="message" rows="4" placeholder="How can I help you?"></textarea>
-          </div>
-
-          <button type="submit" className="btn btn-primary form-submit">
-            <Send size={18} style={{ marginRight: '8px' }} />
-            Send Message
-          </button>
-        </motion.form>
-      </div>
-    </section>
+    </div>
   );
 };
-
 export default Contact;

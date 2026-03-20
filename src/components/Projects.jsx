@@ -1,89 +1,38 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink, Github } from 'lucide-react';
-
-const projects = [
-  {
-    title: 'E-Commerce Platform',
-    description: 'A full-stack e-commerce solution with modern architecture, real-time inventory, and secure payments.',
-    tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=500&h=300&fit=crop',
-    github: '#',
-    live: '#'
-  },
-  {
-    title: 'Task Management App',
-    description: 'A collaborative task management tool with real-time updates and an intuitive drag-and-drop interface.',
-    tech: ['TypeScript', 'Next.js', 'Tailwind', 'Supabase'],
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop',
-    github: '#',
-    live: '#'
-  },
-  {
-    title: 'AI Image Generator',
-    description: 'An AI-powered tool that generates stunning images based on text prompts using stable diffusion.',
-    tech: ['Python', 'React', 'FastAPI', 'PyTorch'],
-    image: 'https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=500&h=300&fit=crop',
-    github: '#',
-    live: '#'
-  }
-];
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
-
-const item = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-};
 
 const Projects = () => {
   return (
-    <section id="projects" className="section container">
-      <div className="section-header">
-        <h2 className="section-title">Selected <span className="gradient-text">Projects</span></h2>
-        <p className="section-subtitle">A showcase of some of my recent work.</p>
+    <div id="projects" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
+      <div className="term-panel" style={{ margin: 0 }}>
+        <h2 className="term-header">RECENT_DEPLOYMENTS</h2>
+        
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          <div>
+            <h3 style={{ color: 'var(--term-green)', fontFamily: 'var(--term-font)', fontSize: '1.25rem', marginBottom: '0.5rem' }}>TaskFlow Pro</h3>
+            <p className="term-text" style={{ marginBottom: '1rem', fontSize: '0.9rem' }}>Production grade task management with real-time bidirectional sync.</p>
+            <button className="term-btn-blue term-btn" style={{ padding: '0.25rem 0.5rem', fontSize: '0.8rem' }}>DEPLOY_LOG</button>
+          </div>
+
+          <div>
+            <h3 style={{ color: 'var(--term-green)', fontFamily: 'var(--term-font)', fontSize: '1.25rem', marginBottom: '0.5rem' }}>DevConnect</h3>
+            <p className="term-text" style={{ marginBottom: '1rem', fontSize: '0.9rem' }}>Social network engineered for developer activities and materials.</p>
+            <button className="term-btn-blue term-btn" style={{ padding: '0.25rem 0.5rem', fontSize: '0.8rem' }}>DEPLOY_LOG</button>
+          </div>
+        </div>
       </div>
 
-      <motion.div 
-        className="projects-grid"
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        {projects.map((project, index) => (
-          <motion.div key={index} className="project-card glass-panel" variants={item}>
-            <div className="project-image">
-              <img src={project.image} alt={project.title} />
-              <div className="project-overlay">
-                <div className="tech-stack">
-                  {project.tech.map((tech, i) => (
-                    <span key={i} className="tech-badge">{tech}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="project-content">
-              <h3 className="project-title">{project.title}</h3>
-              <p className="project-desc">{project.description}</p>
-              <div className="project-links">
-                <a href={project.github} className="icon-link"><Github size={20} /> Code</a>
-                <a href={project.live} className="icon-link"><ExternalLink size={20} /> Live Demo</a>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
-    </section>
+      <div className="term-panel term-panel-blue" style={{ margin: 0 }}>
+        <h2 className="term-header">ACTIVE_API_PREVIEW</h2>
+        <div style={{ background: '#000', padding: '1rem', borderRadius: '4px', border: '1px solid #1e293b', flex: 1 }}>
+          <pre style={{ color: 'var(--term-text)', fontSize: '0.85rem', overflowX: 'auto' }}>
+            <code style={{ color: '#c678dd' }}>app</code><code style={{ color: '#56b6c2' }}>.get</code>(<code style={{ color: '#98c379' }}>'/api/users/:id'</code>, <code style={{ color: '#c678dd' }}>async</code> (req, res) =&gt; {'{\n'}
+            {'  '}<code style={{ color: '#c678dd' }}>const</code> user = <code style={{ color: '#c678dd' }}>await</code> User.<code style={{ color: '#61afef' }}>findById</code>(req.params.id);{'\n'}
+            {'  '}res.<code style={{ color: '#61afef' }}>json</code>(user);{'\n'}
+            {'}'});
+          </pre>
+        </div>
+      </div>
+    </div>
   );
 };
-
 export default Projects;
