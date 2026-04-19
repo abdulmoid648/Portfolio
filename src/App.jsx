@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { Monitor, Code, Terminal, Send } from 'lucide-react';
+import { Monitor, Code, Terminal, Send, Lock } from 'lucide-react';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
 import TechStack from './components/TechStack';
 import Contact from './components/Contact';
+import Auth from './components/Auth';
 import Window from './components/Window';
 import Taskbar from './components/Taskbar';
 import Tour from './components/Tour';
@@ -13,16 +14,23 @@ function App() {
   const [openWindows, setOpenWindows] = useState([]);
   const [focusedWindow, setFocusedWindow] = useState(null);
   const [windowSize, setWindowSize] = useState({ w: 1000, h: 800 });
+  const [isAdmin, setIsAdmin] = useState(!!localStorage.getItem('adminToken'));
 
   useEffect(() => {
     setWindowSize({ w: window.innerWidth, h: window.innerHeight });
+    
+    // Listen for custom event from Auth component when login changes
+    const handleAuthChange = () => setIsAdmin(!!localStorage.getItem('adminToken'));
+    window.addEventListener('admin-auth-changed', handleAuthChange);
+    return () => window.removeEventListener('admin-auth-changed', handleAuthChange);
   }, []);
 
   const windows = {
     hero: { title: 'sys_info.exe', component: Hero, width: 800, height: 600 },
     projects: { title: 'deployments.exe', component: Projects, width: 900, height: 600 },
     stack: { title: 'stack_info.exe', component: TechStack, width: 850, height: 650 },
-    contact: { title: 'connect.exe', component: Contact, width: 700, height: 500 }
+    contact: { title: 'connect.exe', component: Contact, width: 700, height: 500 },
+    auth: { title: 'admin_access.exe', component: Auth, width: 600, height: 650 }
   };
 
   const handleOpenWindow = (id) => {
@@ -43,7 +51,10 @@ function App() {
     <div className="app-container" style={{ minHeight: '100vh', padding: '2rem', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
       
       {/* Global Header */}
-      <h1 style={{ 
+      <h1 
+        onDoubleClick={() => handleOpenWindow('auth')}
+        title="Double connection requested..."
+        style={{ 
         color: 'var(--term-blue)', 
         fontFamily: 'var(--term-font)', 
         fontSize: '2rem', 
@@ -51,7 +62,9 @@ function App() {
         letterSpacing: '0.1em',
         textShadow: 'var(--term-glow-blue)',
         marginBottom: '2rem',
-        zIndex: 1
+        zIndex: 1,
+        cursor: 'default',
+        userSelect: 'none'
       }}>
         :: MERN_ENV // ABDUL_MOIED
       </h1>
@@ -97,6 +110,18 @@ function App() {
            <div className="term-header" style={{ marginBottom: '0.5rem', fontSize: '1.1rem' }}>CONNECTION_PROTOCOL</div>
            <p className="term-text" style={{ fontSize: '0.9rem' }}>Establish transmission</p>
         </div>
+
+        {isAdmin && (
+          <div 
+             className="term-panel term-panel-blue desktop-span-12 bento-btn" 
+             onClick={() => handleOpenWindow('auth')}
+             style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', transition: 'all 0.2s', margin: 0, padding: '2rem' }}
+          >
+             <Lock size={48} color="var(--term-blue)" style={{ marginBottom: '1rem' }} />
+             <div className="term-header" style={{ marginBottom: '0.5rem', fontSize: '1.1rem' }}>ADMIN_ACCESS</div>
+             <p className="term-text" style={{ fontSize: '0.9rem' }}>Root authentication level</p>
+          </div>
+        )}
       </div>
 
       {/* Modals/Windows */}

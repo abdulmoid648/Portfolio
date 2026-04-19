@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Scene3D from './Scene3D';
 
 const Hero = () => {
   return (
@@ -16,23 +15,21 @@ const Hero = () => {
         >
           <div className="term-header">SYS_INFO</div>
           <div className="term-text" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <span style={{ color: 'var(--term-blue)' }}>{'>'} INITIALIZING ROOT... OK</span>
-            <span style={{ color: 'var(--term-blue)' }}>{'>'} AUTHENTICATING USER...</span>
-            <span style={{ color: 'var(--term-green)', fontWeight: 'bold' }}>[ AUTH: SUCCESS ]</span>
-            <br/>
-            <span>PROFILE_NAME: <span style={{ color: 'white' }}>ABDUL MOIED FAROOQ</span></span>
-            <span>ACTIVE_ROLE: <span style={{ color: 'white' }}>FULL STACK ARCHITECT</span></span>
-            <span>STATUS: <span style={{ color: 'var(--term-green)' }}>ONLINE</span></span>
+
+            <span>[IDENTITY]: <span style={{ color: 'white' }}>Abdul Moied</span></span>
+            <span>[ROLE]: <span style={{ color: 'white' }}>Full-Stack Solutions Architect</span></span>
+            <span>[LOCATION]: <span style={{ color: 'white' }}>Lahore_PK // Global_Remote</span></span>
+            <span>Specialization: <span style={{ color: 'white' }}>MERN Stack {"&"} Cross-Platform Mobile (Flutter)</span></span>
+            <br />
+            <span style={{ color: 'var(--term-dim)', lineHeight: '1.6' }}>
+              {"I don't just write code; I engineer scalable environments.Specializing in high-velocity MERN & Flutter deployments"}
+            </span>
           </div>
           <div style={{ marginTop: '2rem' }}>
             <button className="term-btn">{'> EXECUTE_STARTUP'}</button>
           </div>
         </motion.div>
 
-        {/* Center - 3D Scene */}
-        <div className="hero-center" style={{ flex: 1.5 }}>
-          <Scene3D />
-        </div>
       </div>
     </section>
   );
