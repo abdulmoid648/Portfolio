@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { X, Minus, Maximize2, Minimize2 } from 'lucide-react';
 
@@ -14,7 +14,17 @@ const Window = ({
   width = 600,
   height = 400
 }) => {
-  const [isMaximized, setIsMaximized] = useState(false);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+  const [isMaximized, setIsMaximized] = useState(isMobile);
+
+  // Auto-maximize on mobile resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) setIsMaximized(true);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleClose = (e) => {
     e.stopPropagation();
@@ -31,29 +41,37 @@ const Window = ({
   const toggleMaximize = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    setIsMaximized(!isMaximized);
+    if (window.innerWidth > 768) setIsMaximized(!isMaximized);
   };
+
+  const fullMode = isMaximized || isMobile;
 
   return (
     <motion.div
-      drag={!isMaximized}
+      drag={!fullMode}
       dragMomentum={false}
-      dragListener={!isMaximized}
-      initial={{ scale: 0.9, opacity: 0, x: initialPos.x, y: initialPos.y }}
+      dragListener={!fullMode}
+      initial={fullMode 
+        ? { opacity: 0, x: 0, y: 0, scale: 1 }
+        : { scale: 0.9, opacity: 0, x: initialPos.x, y: initialPos.y }
+      }
       animate={{ 
         scale: 1, 
         opacity: 1,
-        width: isMaximized ? '100vw' : width,
-        height: isMaximized ? 'calc(100vh - 64px)' : height,
-        x: isMaximized ? 0 : undefined,
-        y: isMaximized ? 0 : undefined
+        width: fullMode ? '100vw' : width,
+        height: fullMode ? '100vh' : height,
+        x: fullMode ? 0 : undefined,
+        y: fullMode ? 0 : undefined
       }}
       exit={{ scale: 0.9, opacity: 0 }}
       onPointerDown={onFocus}
-      className={`window-container ${isActive ? 'active' : ''}`}
+      className={`window-container ${isActive ? 'active' : ''} ${fullMode ? 'window-fullscreen' : ''}`}
       style={{ 
         zIndex: isActive ? 100 : 10,
-        position: 'absolute'
+        position: fullMode ? 'fixed' : 'absolute',
+        top: fullMode ? 0 : undefined,
+        left: fullMode ? 0 : undefined,
+        borderRadius: fullMode ? 0 : undefined
       }}
     >
       <div className="window-header" onPointerDown={onFocus} onDoubleClick={toggleMaximize}>

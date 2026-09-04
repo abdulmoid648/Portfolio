@@ -21,7 +21,7 @@ const Contact = () => {
               <FaGithub size={32} />
               <div style={{ fontSize: '0.7rem', marginTop: '0.5rem', textAlign: 'center' }}>GITHUB</div>
             </a>
-            <a href="https://linkedin.com/in/abdul-moied" target="_blank" rel="noreferrer" style={{ padding: '1rem', border: '1px solid var(--term-green)', color: 'var(--term-green)', textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '100px', transition: 'all 0.2s' }} className="term-btn">
+            <a href="https://www.linkedin.com/in/abdul-moied-farooq-0639b8304/" target="_blank" rel="noreferrer" style={{ padding: '1rem', border: '1px solid var(--term-green)', color: 'var(--term-green)', textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '100px', transition: 'all 0.2s' }} className="term-btn">
               <FaLinkedin size={32} />
               <div style={{ fontSize: '0.7rem', marginTop: '0.5rem', textAlign: 'center' }}>LINKEDIN</div>
             </a>

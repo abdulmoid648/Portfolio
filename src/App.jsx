@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { Monitor, Code, Terminal, Send, Lock } from 'lucide-react';
+import { Lock } from 'lucide-react';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
 import TechStack from './components/TechStack';
@@ -9,6 +9,7 @@ import Auth from './components/Auth';
 import Window from './components/Window';
 import Taskbar from './components/Taskbar';
 import Tour from './components/Tour';
+import BentoDashboard from './components/BentoDashboard';
 
 function App() {
   const [openWindows, setOpenWindows] = useState([]);
@@ -48,81 +49,10 @@ function App() {
   };
 
   return (
-    <div className="app-container" style={{ minHeight: '100vh', padding: '2rem', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+    <div className="app-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden', background: '#050505' }}>
       
-      {/* Global Header */}
-      <h1 
-        onDoubleClick={() => handleOpenWindow('auth')}
-        title="Double connection requested..."
-        style={{ 
-        color: 'var(--term-blue)', 
-        fontFamily: 'var(--term-font)', 
-        fontSize: '2rem', 
-        fontWeight: 800, 
-        letterSpacing: '0.1em',
-        textShadow: 'var(--term-glow-blue)',
-        marginBottom: '2rem',
-        zIndex: 1,
-        cursor: 'default',
-        userSelect: 'none'
-      }}>
-        :: MERN_ENV // ABDUL_MOIED
-      </h1>
-
-      {/* Bento Desktop Menu */}
-      <div className="bento-grid" style={{ flex: 1, zIndex: 1, display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gridAutoRows: 'minmax(150px, auto)', gap: '1.5rem', maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
-        <div 
-           className="term-panel desktop-span-6 bento-btn" 
-           onClick={() => handleOpenWindow('hero')}
-           style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'center', transition: 'all 0.2s', margin: 0 }}
-        >
-           <Monitor size={48} color="var(--term-green)" style={{ marginBottom: '1rem' }} />
-           <div className="term-header" style={{ marginBottom: '0.5rem', fontSize: '1.1rem' }}>SYS_INFO</div>
-           <p className="term-text" style={{ fontSize: '0.9rem' }}>Initialize Root & Profile</p>
-        </div>
-
-        <div 
-           className="term-panel term-panel-blue desktop-span-6 bento-btn" 
-           onClick={() => handleOpenWindow('stack')}
-           style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'center', transition: 'all 0.2s', margin: 0 }}
-        >
-           <Code size={48} color="var(--term-blue)" style={{ marginBottom: '1rem' }} />
-           <div className="term-header" style={{ marginBottom: '0.5rem', fontSize: '1.1rem' }}>STACK_INFO</div>
-           <p className="term-text" style={{ fontSize: '0.9rem' }}>Orbital Engine Visualizer</p>
-        </div>
-
-        <div 
-           className="term-panel desktop-span-8 bento-btn" 
-           onClick={() => handleOpenWindow('projects')}
-           style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'center', transition: 'all 0.2s', margin: 0 }}
-        >
-           <Terminal size={48} color="var(--term-green)" style={{ marginBottom: '1rem' }} />
-           <div className="term-header" style={{ marginBottom: '0.5rem', fontSize: '1.1rem' }}>RECENT_DEPLOYMENTS</div>
-           <p className="term-text" style={{ fontSize: '0.9rem' }}>Project logs & Environments</p>
-        </div>
-
-        <div 
-           className="term-panel desktop-span-4 bento-btn" 
-           onClick={() => handleOpenWindow('contact')}
-           style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'center', transition: 'all 0.2s', margin: 0 }}
-        >
-           <Send size={48} color="var(--term-green)" style={{ marginBottom: '1rem' }} />
-           <div className="term-header" style={{ marginBottom: '0.5rem', fontSize: '1.1rem' }}>CONNECTION_PROTOCOL</div>
-           <p className="term-text" style={{ fontSize: '0.9rem' }}>Establish transmission</p>
-        </div>
-
-        {isAdmin && (
-          <div 
-             className="term-panel term-panel-blue desktop-span-12 bento-btn" 
-             onClick={() => handleOpenWindow('auth')}
-             style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', transition: 'all 0.2s', margin: 0, padding: '2rem' }}
-          >
-             <Lock size={48} color="var(--term-blue)" style={{ marginBottom: '1rem' }} />
-             <div className="term-header" style={{ marginBottom: '0.5rem', fontSize: '1.1rem' }}>ADMIN_ACCESS</div>
-             <p className="term-text" style={{ fontSize: '0.9rem' }}>Root authentication level</p>
-          </div>
-        )}
-      </div>
+      {/* Bento Dashboard */}
+      <BentoDashboard onOpenWindow={handleOpenWindow} />
 
       {/* Modals/Windows */}
       <AnimatePresence>

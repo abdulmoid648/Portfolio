@@ -17,12 +17,12 @@ const Hero = () => {
           <div className="term-text" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
 
             <span>[IDENTITY]: <span style={{ color: 'white' }}>Abdul Moied</span></span>
-            <span>[ROLE]: <span style={{ color: 'white' }}>Full-Stack Solutions Architect</span></span>
+            <span>[ROLE]: <span style={{ color: 'white' }}>Computer Science Student</span></span>
+            <span>[FOCUS]: <span style={{ color: 'white' }}>MERN Stack {"&"} Flutter Development</span></span>
             <span>[LOCATION]: <span style={{ color: 'white' }}>Lahore_PK // Global_Remote</span></span>
-            <span>Specialization: <span style={{ color: 'white' }}>MERN Stack {"&"} Cross-Platform Mobile (Flutter)</span></span>
             <br />
             <span style={{ color: 'var(--term-dim)', lineHeight: '1.6' }}>
-              {"I don't just write code; I engineer scalable environments.Specializing in high-velocity MERN & Flutter deployments"}
+              {"Building high-performance web and mobile solutions while mastering the core principles of Software Engineering."}
             </span>
           </div>
           <div style={{ marginTop: '2rem' }}>

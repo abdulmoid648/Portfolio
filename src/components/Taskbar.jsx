@@ -9,6 +9,9 @@ const Taskbar = ({ activeWindows, openWindow, focusedWindow }) => {
     { id: 'contact', title: 'CONNECTION', icon: Send, color: '#22c55e' }
   ];
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+  const iconSize = isMobile ? 18 : 24;
+
   return (
     <div className="taskbar">
       {apps.map((app) => {
@@ -22,12 +25,12 @@ const Taskbar = ({ activeWindows, openWindow, focusedWindow }) => {
             onClick={() => openWindow(app.id)}
             title={app.title}
           >
-            <app.icon size={24} style={{ color: isOpen ? app.color : undefined }} />
+            <app.icon size={iconSize} style={{ color: isOpen ? app.color : undefined }} />
           </div>
         );
       })}
       
-      <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
+      <div className="taskbar-status" style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
         <div className="status-badge">
           <div className="pulse-dot" />
           SYSTEM ONLINE
